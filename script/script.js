@@ -14,3 +14,15 @@ function ageInDays(){
 function reset() {
     document.getElementById('ageIdDays').remove();
 }
+function generateSmile(){
+    var image1 = document.createElement('img');
+    var image2 = document.createElement('img');
+    var div = document.getElementById('flex-smile-gen');
+    image1.src = "./img/tenor.gif";
+    image2.src = "./img/smile.gif";
+    div.append(image1);
+    div.append(image2);
+}
+function resetAllSmile() {
+    document.getElementById('flex-smile-gen').remove();
+}
