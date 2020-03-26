@@ -30,3 +30,23 @@ function resetAllSmile() {
 }
 
 //Challenge 3: Rock, Paper, Scissors
+
+function rpsGame(yourChoise){
+    //console.log(yourChoise);
+    var humanChoise, botChoise;
+    //humanChoise = yourChoise.id;
+    botChoise = numberToChoise(randomToRpsInt());
+    alert(botChoise);
+    //results = decideWinner(humanChoise, botChoise); //[0, 1] human lost | bot win
+    //message = finalMessage(results); // { 'message': 'you won', 'color': 'green'}
+    //rpsFrontEnd(yourChoise.id, botChoise, message);
+
+}
+
+function randomToRpsInt(){
+    return Math.floor(Math.random() * 3);
+}
+
+function numberToChoise(number){
+    return ['rock', 'paper', 'scissors'][number];
+}
