@@ -1,3 +1,4 @@
+/* ********************************************************************************************************** */
 //Chanllenge 1: You Age in Days
 
 function ageInDays(){
@@ -14,7 +15,7 @@ function ageInDays(){
 function reset() {
     document.getElementById('ageIdDays').remove();
 }
-
+/* ********************************************************************************************************** */
 //Challenge 2: Cat Generator
 function generateSmile(){
     var image1 = document.createElement('img');
@@ -28,7 +29,7 @@ function generateSmile(){
 function resetAllSmile() {
     document.getElementById('flex-smile-gen').remove();
 }
-
+/* ********************************************************************************************************** */
 //Challenge 3: Rock, Paper, Scissors
 function rpsGame(yourChoise){
     //console.log(yourChoise);
@@ -101,3 +102,33 @@ function rpsFrontEnd(humanImageChoise,botImageChoise,finalMessage){
     document.getElementById('flex-box-rps-div').appendChild(messageDiv);
     document.getElementById('flex-box-rps-div').appendChild(botDiv);
 }
+
+/* ********************************************************************************************************** */
+// Challenge 4: Change the color of all the buttons
+ var all_buttons = document.getElementsByTagName('button');
+ console.log(all_buttons);
+
+ var copyAllButtons = [];
+ for (let i = 0; i < all_buttons.length; i++){
+     copyAllButtons.push(all_buttons[i].classList[1]);
+ }
+
+ console.log(copyAllButtons);
+
+ function buttonColorChange(buttonThingy){
+    if (buttonThingy === 'red'){
+        buttonRed();
+    }else if(buttonThingy === 'green'){
+        buttonGreen();
+    }else if(buttonThingy === 'reset'){
+        buttonColorReset();
+    }else if(buttonThingy === 'random'){
+        randomColors();
+    }
+ }
+
+ function buttonRed(){
+     for(let i = 0; i < all_buttons.length; i++){
+ 
+     } 
+ }
