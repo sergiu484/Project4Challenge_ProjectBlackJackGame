@@ -24,6 +24,9 @@
     border: 1px solid black;
     align-items: center;
 }
+.list-menu{
+  list-style: none;
+}
 /* ********************************************************************************************************** */
 /* Challenge 2 */
 .flex-box-container-2 img{
