@@ -30,7 +30,17 @@ function resetAllSmile() {
 }
 
 //Challenge 3: Rock, Paper, Scissors
+<<<<<<< HEAD
 
+=======
+function randomToRpsInt(){
+    return Math.floor(Math.random() * 3);
+}
+
+function numberToChoise(number){
+    return ['rock', 'paper', 'scissors'][number];
+}
+>>>>>>> ad52836e87bab80d1c039588efacc23e3315000a
 function rpsGame(yourChoise){
     //console.log(yourChoise);
     var humanChoise, botChoise;
@@ -43,6 +53,7 @@ function rpsGame(yourChoise){
 
 }
 
+<<<<<<< HEAD
 function randomToRpsInt(){
     return Math.floor(Math.random() * 3);
 }
@@ -50,3 +61,5 @@ function randomToRpsInt(){
 function numberToChoise(number){
     return ['rock', 'paper', 'scissors'][number];
 }
+=======
+>>>>>>> ad52836e87bab80d1c039588efacc23e3315000a
