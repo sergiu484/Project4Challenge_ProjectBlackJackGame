@@ -14,6 +14,8 @@ function ageInDays(){
 function reset() {
     document.getElementById('ageIdDays').remove();
 }
+
+//Challenge 2: Cat Generator
 function generateSmile(){
     var image1 = document.createElement('img');
     var image2 = document.createElement('img');
@@ -26,3 +28,5 @@ function generateSmile(){
 function resetAllSmile() {
     document.getElementById('flex-smile-gen').remove();
 }
+
+//Challenge 3: Rock, Paper, Scissors
