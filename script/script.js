@@ -175,11 +175,11 @@ document.querySelector('#blackjack-deal-button').addEventListener('click',blackj
 function blackjackHit(){
     let card = randomCard();
     console.log(card);
-    showCard(card,YOU);
-    updateScore(card,YOU);
-    console.log(YOU['score']);
+    showCard(card,DEALER);
+    updateScore(card,DEALER);
+    console.log(DEALER['score']);
 
-    showScore(YOU);
+    showScore(DEALER);
 
 }
 function randomCard(){
@@ -207,12 +207,13 @@ function blackjackDeal(){
 function updateScore(card, activePlayer){
     activePlayer['score'] += blackjackGame['cardsMap'][card];
 }
-/* **********************************ATENTIE DE SCHIMBAT FUNCTIA min 6:16:55 ******************************** */
 function showScore(activePlayer){
-//    document.querySelector(activePlayer).textContent = activePlayer['score'];
-    document.querySelector("#your-blackjack-result").textContent = activePlayer['score'];
-/* ********************************************************************************************************* */ 
-
+    if(activePlayer == YOU){
+        document.querySelector("#your-blackjack-result").textContent = activePlayer['score'];
+    }
+    else if(activePlayer == DEALER){
+        document.querySelector("#dealer-blackjack-result").textContent = activePlayer['score'];
+    }
 }
 
 function blackjackStand(){
