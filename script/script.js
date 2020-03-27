@@ -35,13 +35,13 @@ function rpsGame(yourChoise){
     //console.log(yourChoise);
     var humanChoise, botChoise;
     humanChoise = yourChoise.id;
-    
+
     botChoise = numberToChoise(randomToRpsInt());
     console.log('ComputerChoise: ',botChoise);
-    
+
     results = decideWinner(humanChoise, botChoise); //[0, 1] human lost | bot win
     console.log(results);
-    
+
     message = finalMessage(results); // { 'message': 'you won', 'color': 'green'}
     console.log(message);
     //console.log(message.color);
@@ -59,7 +59,7 @@ function decideWinner(yourChoise,computerChoise){
     var rpsDatabase ={
         'rock': {'scissors': 1, 'rock': 0.5, 'paper':0},
         'paper':{'rock':1, 'paper':0.5, 'scissors':0},
-        'scissors':{'paper':1, 'scissors':0.5, 'rock':0} 
+        'scissors':{'paper':1, 'scissors':0.5, 'rock':0}
     }
     var yourScore = rpsDatabase[yourChoise][computerChoise];
     var computerScore = rpsDatabase[computerChoise][yourChoise];
@@ -94,10 +94,10 @@ function rpsFrontEnd(humanImageChoise,botImageChoise,finalMessage){
     var botDiv = document.createElement('div');
     var messageDiv = document.createElement('div');
 
-    humanDiv.innerHTML = "<img src='" + imagesDataBase[humanImageChoise] + "' width='250px' height='200px' style='box-shadow:0px 10px 50px rgba(37, 50, 233, 1)' >" 
+    humanDiv.innerHTML = "<img src='" + imagesDataBase[humanImageChoise] + "' width='250px' height='200px' style='box-shadow:0px 10px 50px rgba(37, 50, 233, 1)' >"
     messageDiv.innerHTML = "<h1 style='color:" + finalMessage.color + "; font-size:60px; padding: 30px; '>" + finalMessage['message'] + "</h1>"
-    botDiv.innerHTML = "<img src='" + imagesDataBase[botImageChoise] + "' width='250px' height='200px' style='box-shadow:0px 10px 50px rgba(243, 38, 24, 1)' >" 
-    
+    botDiv.innerHTML = "<img src='" + imagesDataBase[botImageChoise] + "' width='250px' height='200px' style='box-shadow:0px 10px 50px rgba(243, 38, 24, 1)' >"
+
     document.getElementById('flex-box-rps-div').appendChild(humanDiv);
     document.getElementById('flex-box-rps-div').appendChild(messageDiv);
     document.getElementById('flex-box-rps-div').appendChild(botDiv);
@@ -106,14 +106,14 @@ function rpsFrontEnd(humanImageChoise,botImageChoise,finalMessage){
 /* ********************************************************************************************************** */
 // Challenge 4: Change the color of all the buttons
  var all_buttons = document.getElementsByTagName('button');
- console.log(all_buttons);
+//console.log(all_buttons);
 
  var copyAllButtons = [];
  for (let i = 0; i < all_buttons.length; i++){
      copyAllButtons.push(all_buttons[i].classList[1]);
  }
 
- console.log(copyAllButtons);
+ //console.log(copyAllButtons);
 
  function buttonColorChange(buttonThingy){
     if (buttonThingy.value === 'red'){
@@ -131,13 +131,13 @@ function rpsFrontEnd(humanImageChoise,botImageChoise,finalMessage){
      for(let i = 0; i < all_buttons.length; i++){
         all_buttons[i].classList.remove(all_buttons[i].classList[1]);
         all_buttons[i].classList.add('btn-danger');
-     } 
+     }
  }
  function buttonGreen(){
     for(let i = 0; i < all_buttons.length; i++){
        all_buttons[i].classList.remove(all_buttons[i].classList[1]);
        all_buttons[i].classList.add('btn-success');
-    } 
+    }
 }
 function buttonColorReset(){
     for(let i = 0; i < all_buttons.length; i++){
@@ -158,7 +158,8 @@ function randomColors(){
 let blackjackGame = {
     'you': {'scoreSpan':'your-blackJack-result','div':'#your-box','score':0},
     'dealer': {'scoreSpan':'dealer-blackJack-result','div':'#dealer-box','score':0},
-    'cards': ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
+    'cards': ['2','3','4','5','6','7','8','9','10','J','Q','K','A'],
+    'cardsMap': {'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':2,'Q':3,'K':4,'A':11}
 };
 const YOU = blackjackGame['you'];
 const DEALER = blackjackGame['dealer'];
@@ -173,8 +174,13 @@ document.querySelector('#blackjack-deal-button').addEventListener('click',blackj
 
 function blackjackHit(){
     let card = randomCard();
-    console.log(card); 
+    console.log(card);
     showCard(card,YOU);
+    updateScore(card,YOU);
+    console.log(YOU['score']);
+
+    showScore(YOU);
+
 }
 function randomCard(){
     let randomIndex = Math.floor(Math.random()*13);
@@ -184,11 +190,11 @@ function showCard(card,activePlayer){
     let cardImage = document.createElement('img');
     cardImage.src = `blackjackimages/${card}.png`;
     document.querySelector(activePlayer['div']).appendChild(cardImage);
-    hitSound.play();
+    hitSound.play(); 
 }
 function blackjackDeal(){
     let yourImages = document.querySelector('#your-box').querySelectorAll('img');
-    let dealerImages = document.querySelector('#dealer-box').querySelectorAll('img');  
+    let dealerImages = document.querySelector('#dealer-box').querySelectorAll('img');
     for(let i = 0; i < yourImages.length; i++){
         yourImages[i].remove();
     }
@@ -197,23 +203,18 @@ function blackjackDeal(){
     }
     dealSound.play();
 }
+
+function updateScore(card, activePlayer){
+    activePlayer['score'] += blackjackGame['cardsMap'][card];
+}
+
+function showScore(activePlayer){
+
+    document.querySelector(activePlayer['scoreSpan']).textContent = activePlayer['score']; 
+    console.log(activePlayer['score']);
+}
+
 function blackjackStand(){
     //  alert("Charles click the Stand button");
       standSound.play();
   }
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
