@@ -153,6 +153,8 @@ function randomColors(){
         all_buttons[i].classList.add(choices[randomNumber]);
     }
 }
+/* ********************************************************************************************************** */
+// Challenge 4: Change the color of all the buttons
 
 
 

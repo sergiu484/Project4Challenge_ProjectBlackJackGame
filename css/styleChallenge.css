@@ -8,14 +8,55 @@
 }
 /* ********************************************************************************************************** */
 /* Challenge 1 + 2 + 3 */
-.flex-box-container-1, .flex-box-container-2, .flex-box-rps, .flex-box-pick-color {
+.flex-box-container-1, .flex-box-container-2, .flex-box-rps, .flex-box-pick-color,.flex-blackjack-row-1,
+.flex-blackjack-row-2,.flex-blackjack-row-3 {
     border: 1px solid black;
     display: flex;
     padding: 10px;
-    flex-direction: row;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-around;
 }
+.flex-blackjack-row-0{
+    background-image:  url("https://prodimages.everythingneon.com/giant/n105-12623-blackjack-white-neon-sign.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat; 
+    color: blue;
+    height: 150px;
+}
+.flex-blackjack-row-1{
+    background-image:  
+    url("https://pl.sterlingcdn.com/wp-content/uploads/sites/3/2018/07/blackjack-classic-background.jpg") ;
+    color: white;
+    background-size: 100% 120%;
+    background-repeat: no-repeat;
+}
+
+.flex-blackjack-row-1 div{
+    border:1px solid black;
+    padding: 10px;
+    flex:1;
+    height: 400px;
+    text-align: center;
+    width: 300px;
+}
+.flex-blackjack-row-1 img{
+    width: 25%;
+    padding: 10px;
+}
+.flex-blackjack-row-2{
+    background-color: black;
+}
+.flex-blackjack-row-2 button{
+    border: 3px solid white;
+    padding: 5px;
+}
+.flex-blackjack-row-2 div{
+    border: 3px solid red;
+    padding: 5px;
+}
+
+
 /* ********************************************************************************************************** */
 /* Challenge 1 */
 .flex-box-container-1 div{
@@ -40,6 +81,7 @@
     box-shadow: 0px 10px 50px rgba(37, 50, 233, 1);
 }
 /* ********************************************************************************************************** */
-table{
+table th{
     border: 1px solid black;
+    padding: 10px;
 }
