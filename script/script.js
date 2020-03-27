@@ -175,11 +175,11 @@ document.querySelector('#blackjack-deal-button').addEventListener('click',blackj
 function blackjackHit(){
     let card = randomCard();
     console.log(card);
-    showCard(card,DEALER);
-    updateScore(card,DEALER);
-    console.log(DEALER['score']);
+    showCard(card,YOU);
+    updateScore(card,YOU);
+    console.log(YOU['score']);
 
-    showScore(DEALER);
+    showScore(YOU);
 
 }
 function randomCard(){
