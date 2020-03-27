@@ -154,11 +154,36 @@ function randomColors(){
     }
 }
 /* ********************************************************************************************************** */
-// Challenge 4: Change the color of all the buttons
+/* Challeange 5: BlackJack*/
+let blackjackGame = {
+    'you': {'scoreSpan':'your-blackJack-result','div':'#your-box','score':0},
+    'dealer': {'scoreSpan':'dealer-blackJack-result','div':'#dealer-box','score':0}
+};
+const YOU = blackjackGame['you'];
+const DEALER = blackjackGame['dealer'];
 
+const hitSound = new Audio('blackjacksounds/swish.m4a');
+const standSound = new Audio('blackjacksounds/aww.mp3');
+const dealSound = new Audio('blackjacksounds/cash.mp3');
 
+document.querySelector('#blackjack-hit-button').addEventListener('click',blackjackHit);
+document.querySelector('#blackjack-stand-button').addEventListener('click',blackjackStand);
+document.querySelector('#blackjack-deal-button').addEventListener('click',blackjackDeal);
 
+function blackjackHit(){
+    let cartImage = document.createElement('img');
+    cartImage.src = 'blackjackimages/Q.png';
+    document.querySelector(YOU['div']).appendChild(cartImage);
+    hitSound.play();
+}
 
+function blackjackStand(){
+  //  alert("Charles click the Stand button");
+    standSound.play();
+}function blackjackDeal(){
+    //alert("Charles click the Deal button");
+    dealSound.play();
+}
 
 
 
