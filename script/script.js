@@ -207,11 +207,12 @@ function blackjackDeal(){
 function updateScore(card, activePlayer){
     activePlayer['score'] += blackjackGame['cardsMap'][card];
 }
-
+/* **********************************ATENTIE DE SCHIMBAT FUNCTIA min 6:16:55 ******************************** */
 function showScore(activePlayer){
+//    document.querySelector(activePlayer).textContent = activePlayer['score'];
+    document.querySelector("#your-blackjack-result").textContent = activePlayer['score'];
+/* ********************************************************************************************************* */ 
 
-    document.querySelector(activePlayer['scoreSpan']).textContent = activePlayer['score']; 
-    console.log(activePlayer['score']);
 }
 
 function blackjackStand(){
