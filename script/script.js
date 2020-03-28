@@ -165,11 +165,11 @@ const YOU = blackjackGame['you'];
 const DEALER = blackjackGame['dealer'];
 
 const hitSound = new Audio('blackjacksounds/swish.m4a');
-const standSound = new Audio('blackjacksounds/aww.mp3');
-const dealSound = new Audio('blackjacksounds/cash.mp3');
+const lossSound = new Audio('blackjacksounds/aww.mp3');
+const winSound = new Audio('blackjacksounds/cash.mp3');
 
 document.querySelector('#blackjack-hit-button').addEventListener('click',blackjackHit);
-document.querySelector('#blackjack-stand-button').addEventListener('click',blackjackStand);
+document.querySelector('#blackjack-stand-button').addEventListener('click',dealerLogic);
 document.querySelector('#blackjack-deal-button').addEventListener('click',blackjackDeal);
 
 function blackjackHit(){
@@ -194,6 +194,8 @@ function showCard(card,activePlayer){
     }
 }
 function blackjackDeal(){
+    let winner = computerWinner();
+    showResult(winner);
     let yourImages = document.querySelector('#your-box').querySelectorAll('img');
     let dealerImages = document.querySelector('#dealer-box').querySelectorAll('img');
     for(let i = 0; i < yourImages.length; i++){
@@ -210,7 +212,7 @@ function blackjackDeal(){
     document.querySelector("#your-blackjack-result").style.color = 'white';
     document.querySelector("#dealer-blackjack-result").textContent = 0;
     document.querySelector("#dealer-blackjack-result").style.color = 'white';
-    dealSound.play();
+    winSound.play();
 }
 
 function updateScore(card, activePlayer){
@@ -244,8 +246,73 @@ function showScore(activePlayer){
         }
     }
 }
+function dealerLogic(){
+    let card = randomCard();
+    showCard(card,DEALER);
+    updateScore(card,DEALER);
+    showScore(DEALER);
+}
 
-function blackjackStand(){
-    //  alert("Charles click the Stand button");
-      standSound.play();
-  }
+
+//Compute the winner and return who won the game
+function computerWinner(){
+    let winner;
+    if(YOU['score'] <= 21){
+        //Condition: higher score than dealer or  when dealer busts you are 21 or under
+        if((YOU['score'] > DEALER['score']) || (DEALER['score'] > 21)){
+            console.log("You won!");
+            winner = YOU;
+        } else if((YOU['score'] < DEALER['score']) ) {
+            console.log("You lost!");
+            winner = DEALER;
+        } else if(YOU['score'] === DEALER['score'] ) {
+            console.log("You drew!")
+        }
+        //Condition: when user busts but dealer doesn't
+    } else if(YOU['score'] > 21 && DEALER['score'] <= 21 ){
+        console.log('You lost!');
+        winner = DEALER;
+        //Condition: when you AND the dealer busts
+    } else if(YOU['score'] > 21 && DEALER['score'] > 21){
+        console.log("You drew!");
+    }
+    console.log("Winner is", winner);
+    return winner;
+}
+
+function showResult(winner){
+    let message, message1, message2, messageColor, messageColor1, messageColor2;
+
+    if(winner === YOU){
+        message1 = "You won!";
+        messageColor1 = "green";
+        message2 = "You lose!";
+        messageColor2 = "red";
+        document.querySelector("#you-blackjack-result-winner").textContent = message1;
+        document.querySelector("#dealer-blackjack-result-winner").textContent = message2;
+        document.querySelector("#you-blackjack-result-winner").style.color = messageColor1;
+        document.querySelector("#dealer-blackjack-result-winner").style.color = messageColor2;    
+        winSound.play();
+    } else if(winner === DEALER){
+        message1 = "You won!";
+        messageColor1 = "green";
+        message2 = "You lose!";
+        messageColor2 = "red";
+        document.querySelector("#you-blackjack-result-winner").textContent = message2;
+        document.querySelector("#dealer-blackjack-result-winner").textContent = message1;
+        document.querySelector("#you-blackjack-result-winner").style.color = messageColor2;
+        document.querySelector("#dealer-blackjack-result-winner").style.color = messageColor1; 
+
+        lossSound.play();
+    } else {
+        message = "You drew!";
+        messageColor = "yellow";
+        document.querySelector("#you-blackjack-result-winner").textContent = message;
+        document.querySelector("#you-blackjack-result-winner").style.color = messageColor;
+        document.querySelector("#dealer-blackjack-result-winner").textContent = message;
+        document.querySelector("#dealer-blackjack-result-winner").style.color = messageColor; 
+    
+    }
+//    document.querySelector("#you-blackjack-result-winner").textContent = message;
+//    document.querySelector("#you-blackjack-result-winner").style.color = messageColor;
+}
