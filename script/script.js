@@ -342,9 +342,7 @@ function showResult(winner){
             document.querySelector("#you-blackjack-result-winner").style.color = messageColor;
             document.querySelector("#dealer-blackjack-result-winner").textContent = message;
             document.querySelector("#dealer-blackjack-result-winner").style.color = messageColor; 
-        
         }
-    //    document.querySelector("#you-blackjack-result-winner").textContent = message;
-    //    document.querySelector("#you-blackjack-result-winner").style.color = messageColor;
     }
 }
+/* ********************************************************************************************************** */
