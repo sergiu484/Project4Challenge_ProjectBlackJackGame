@@ -202,6 +202,14 @@ function blackjackDeal(){
     for(let i = 0; i < dealerImages.length; i++){
         dealerImages[i].remove();
     }
+    YOU['score'] = 0;
+    DEALER['score'] = 0;
+   // console.log(YOU['score']);
+
+    document.querySelector("#your-blackjack-result").textContent = 0;
+    document.querySelector("#your-blackjack-result").style.color = 'white';
+    document.querySelector("#dealer-blackjack-result").textContent = 0;
+    document.querySelector("#dealer-blackjack-result").style.color = 'white';
     dealSound.play();
 }
 
