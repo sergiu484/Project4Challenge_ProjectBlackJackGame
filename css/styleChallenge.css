@@ -9,7 +9,7 @@
 /* ********************************************************************************************************** */
 /* Challenge 1 + 2 + 3 */
 .flex-box-container-1, .flex-box-container-2, .flex-box-rps, .flex-box-pick-color,.flex-blackjack-row-1,
-.flex-blackjack-row-2,.flex-blackjack-row-3 {
+.flex-blackjack-row-2{
     border: 1px solid black;
     display: flex;
     padding: 10px;
@@ -85,4 +85,6 @@ table th{
     border: 1px solid black;
     padding: 10px;
 }
-
+.text{
+    color: white;
+}
