@@ -159,7 +159,7 @@ let blackjackGame = {
     'you': {'scoreSpan':'your-blackJack-result','div':'#your-box','score':0},
     'dealer': {'scoreSpan':'dealer-blackJack-result','div':'#dealer-box','score':0},
     'cards': ['2','3','4','5','6','7','8','9','10','J','Q','K','A'],
-    'cardsMap': {'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':2,'Q':3,'K':4,'A':11}
+    'cardsMap': {'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':2,'Q':3,'K':4,'A':[1, 11]}
 };
 const YOU = blackjackGame['you'];
 const DEALER = blackjackGame['dealer'];
@@ -178,7 +178,6 @@ function blackjackHit(){
     showCard(card,YOU);
     updateScore(card,YOU);
     console.log(YOU['score']);
-
     showScore(YOU);
 
 }
@@ -187,10 +186,12 @@ function randomCard(){
     return blackjackGame['cards'][randomIndex];
 }
 function showCard(card,activePlayer){
-    let cardImage = document.createElement('img');
-    cardImage.src = `blackjackimages/${card}.png`;
-    document.querySelector(activePlayer['div']).appendChild(cardImage);
-    hitSound.play(); 
+    if(activePlayer['score'] <= 21){
+        let cardImage = document.createElement('img');
+        cardImage.src = `blackjackimages/${card}.png`;
+        document.querySelector(activePlayer['div']).appendChild(cardImage);
+        hitSound.play(); 
+    }
 }
 function blackjackDeal(){
     let yourImages = document.querySelector('#your-box').querySelectorAll('img');
@@ -205,14 +206,34 @@ function blackjackDeal(){
 }
 
 function updateScore(card, activePlayer){
-    activePlayer['score'] += blackjackGame['cardsMap'][card];
+    if(card === 'A'){
+    // if adding 11 keeps me below 21, add 11. Otherwise, add 1
+        if(activePlayer['score'] + blackjackGame['cardsMap'][card][1] <= 21){
+            activePlayer['score'] += blackjackGame['cardsMap'][card][1];
+        } 
+        else
+            activePlayer['score'] += blackjackGame['cardsMap'][card][0];
+    }
+    else{
+        activePlayer['score'] += blackjackGame['cardsMap'][card];
+    }
 }
 function showScore(activePlayer){
     if(activePlayer == YOU){
-        document.querySelector("#your-blackjack-result").textContent = activePlayer['score'];
+        if(activePlayer['score'] > 21){
+            document.querySelector("#your-blackjack-result").textContent = 'BUST';
+            document.querySelector("#your-blackjack-result").style.color = 'red';            
+        }else{
+            document.querySelector("#your-blackjack-result").textContent = activePlayer['score'];
+        }
     }
     else if(activePlayer == DEALER){
-        document.querySelector("#dealer-blackjack-result").textContent = activePlayer['score'];
+        if(activePlayer['score'] > 21){
+            document.querySelector("#dealer-blackjack-result").textContent = 'BUST';
+            document.querySelector("#dealer-blackjack-result").style.color = 'red';
+        }else{
+            document.querySelector("#dealer-blackjack-result").textContent = activePlayer['score'];
+        }
     }
 }
 
