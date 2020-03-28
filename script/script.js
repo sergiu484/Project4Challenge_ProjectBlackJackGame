@@ -1,6 +1,6 @@
 /* ********************************************************************************************************** */
 //Chanllenge 1: You Age in Days
-
+/* 	https://www.youtube.com/watch?v=Qqx_wzMmFeA */
 function ageInDays(){
     var birthYear = prompt('What year are you born... Good friend?');
     var ageInDayss = (2020 - birthYear) * 365;
@@ -196,7 +196,7 @@ function showCard(card,activePlayer){
         let cardImage = document.createElement('img');
         cardImage.src = `blackjackimages/${card}.png`;
         document.querySelector(activePlayer['div']).appendChild(cardImage);
-        hitSound.play(); 
+        hitSound.play();
     }
 }
 function blackjackDeal(){
@@ -225,7 +225,7 @@ function blackjackDeal(){
         document.querySelector("#dealer-blackjack-result-winner").textContent = "Let's play";;
         document.querySelector("#you-blackjack-result-winner").style.color = 'white';
         document.querySelector("#dealer-blackjack-result-winner").style.color = 'white';
-        //    winSound.play();           
+        //    winSound.play();
         blackjackGame['turnOver'] = true;
     }
 }
@@ -235,7 +235,7 @@ function updateScore(card, activePlayer){
     // if adding 11 keeps me below 21, add 11. Otherwise, add 1
         if(activePlayer['score'] + blackjackGame['cardsMap'][card][1] <= 21){
             activePlayer['score'] += blackjackGame['cardsMap'][card][1];
-        } 
+        }
         else
             activePlayer['score'] += blackjackGame['cardsMap'][card][0];
     }
@@ -247,7 +247,7 @@ function showScore(activePlayer){
     if(activePlayer == YOU){
         if(activePlayer['score'] > 21){
             document.querySelector("#your-blackjack-result").textContent = 'BUST';
-            document.querySelector("#your-blackjack-result").style.color = 'red';            
+            document.querySelector("#your-blackjack-result").style.color = 'red';
         }else{
             document.querySelector("#your-blackjack-result").textContent = activePlayer['score'];
         }
@@ -266,7 +266,7 @@ function sleep(ms){
 }
 async function dealerLogic(){
     blackjackGame['isStand'] = true;
-    
+
     while(DEALER['score'] < 16 && blackjackGame['isStand'] === true){
         let card = randomCard();
         showCard(card,DEALER);
@@ -321,7 +321,7 @@ function showResult(winner){
             document.querySelector("#you-blackjack-result-winner").textContent = message1;
             document.querySelector("#dealer-blackjack-result-winner").textContent = message2;
             document.querySelector("#you-blackjack-result-winner").style.color = messageColor1;
-            document.querySelector("#dealer-blackjack-result-winner").style.color = messageColor2;    
+            document.querySelector("#dealer-blackjack-result-winner").style.color = messageColor2;
             winSound.play();
         } else if(winner === DEALER){
             document.querySelector("#losses").textContent = blackjackGame['losses'];
@@ -332,7 +332,7 @@ function showResult(winner){
             document.querySelector("#you-blackjack-result-winner").textContent = message2;
             document.querySelector("#dealer-blackjack-result-winner").textContent = message1;
             document.querySelector("#you-blackjack-result-winner").style.color = messageColor2;
-            document.querySelector("#dealer-blackjack-result-winner").style.color = messageColor1; 
+            document.querySelector("#dealer-blackjack-result-winner").style.color = messageColor1;
             lossSound.play();
         } else {
             document.querySelector("#draws").textContent = blackjackGame['draws'];
@@ -341,7 +341,7 @@ function showResult(winner){
             document.querySelector("#you-blackjack-result-winner").textContent = message;
             document.querySelector("#you-blackjack-result-winner").style.color = messageColor;
             document.querySelector("#dealer-blackjack-result-winner").textContent = message;
-            document.querySelector("#dealer-blackjack-result-winner").style.color = messageColor; 
+            document.querySelector("#dealer-blackjack-result-winner").style.color = messageColor;
         }
     }
 }
